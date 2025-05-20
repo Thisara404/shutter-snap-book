@@ -305,7 +305,7 @@ const BookingPage = () => {
                       <SelectValue placeholder="Select category" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Categories</SelectItem>
+                      <SelectItem value="all">All Categories</SelectItem>
                       {categories.map((category) => (
                         <SelectItem key={category} value={category}>{category}</SelectItem>
                       ))}
@@ -317,6 +317,7 @@ const BookingPage = () => {
                   {photographers
                     .filter(photographer => 
                       !selectedCategory || 
+                      selectedCategory === "all" ||
                       photographer.specialties.includes(selectedCategory)
                     )
                     .map((photographer) => (
@@ -359,6 +360,7 @@ const BookingPage = () => {
 
                 {photographers.filter(photographer => 
                   !selectedCategory || 
+                  selectedCategory === "all" ||
                   photographer.specialties.includes(selectedCategory)
                 ).length === 0 && (
                   <div className="text-center py-8">
